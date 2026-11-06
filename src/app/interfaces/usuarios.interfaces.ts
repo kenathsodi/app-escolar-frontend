@@ -24,7 +24,7 @@ export interface DatosMaestro {
   first_name: string;
   last_name: string;
   email: string;
-  fecha_nacimiento: string;
+  fecha_nacimiento: Date | string;
   telefono: string;
   rfc: string;
   cubiculo: string;
@@ -34,14 +34,14 @@ export interface DatosMaestro {
 // Interfaz datos de usuario de alumno
 export interface DatosAlumno {
   id: number;
-  matricula: number;
+  matricula: number | null;
   first_name: string;
   last_name: string;
   email: string;
-  fecha_nacimiento: string;
+  fecha_nacimiento: Date | string | null; // El datepicker entrega un Date; al enviarlo se pasa a 'YYYY-MM-DD'
   curp: string;
   rfc: string;
-  edad: number;
+  edad: number | null;
   telefono: string;
   ocupacion: string;
 }

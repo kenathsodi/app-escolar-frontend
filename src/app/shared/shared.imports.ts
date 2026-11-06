@@ -16,6 +16,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 /* =========================
    ngx-mask (inputs de código)
@@ -46,6 +49,9 @@ export const SHARED_IMPORTS = [
   MatInputModule,
   MatFormFieldModule,
   MatRadioModule,
+  MatDatepickerModule,
+  MatSelectModule,
+  MatCheckboxModule,
   /* ngx-mask */
   NgxMaskDirective,
   NgxMaskPipe

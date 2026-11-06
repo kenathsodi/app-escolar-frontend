@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ValidatorService {
+  minDate(arg0: string, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
 
   //Validación para campos requeridos, no nulos y no vacíos
   required(input: any) {
