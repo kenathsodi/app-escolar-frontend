@@ -20,15 +20,15 @@ export interface DatosAdministrador {
 // Interfaz datos de usuario de maestro
 export interface DatosMaestro {
   id: number;
-  id_trabajador: number;
+  id_trabajador: number | null;
   first_name: string;
   last_name: string;
   email: string;
-  fecha_nacimiento: Date | string;
+  fecha_nacimiento: Date | string | null; // El datepicker entrega un Date; al enviarlo se pasa a 'YYYY-MM-DD'
   telefono: string;
   rfc: string;
   cubiculo: string;
-  area_investigacion: number;
+  area_investigacion: number | null; // id del área elegida en el select
 }
 
 // Interfaz datos de usuario de alumno

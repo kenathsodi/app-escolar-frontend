@@ -1,1 +1,146 @@
-<p>registro-maestros works!</p>
+<div class="wrapper">
+  <div class="section-registro">
+    <div class="body-registro">
+      <div class="row mt-3 mb-3">
+        <div class="form-group col-12">
+          <label class="title-user" for="tipo_usuario"> Ingresa los datos del maestro </label>
+        </div>
+      </div>
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>ID de trabajador</mat-label>
+        <input
+          matInput
+          [(ngModel)]="maestro.id_trabajador"
+          name="id_trabajador"
+          placeholder="Escribe el ID de trabajador"
+        />
+      </mat-form-field>
+      @if (errors.id_trabajador) {
+        <div class="invalid-feedback">{{ errors.id_trabajador }}</div>
+      }
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          [(ngModel)]="maestro.first_name"
+          placeholder="Escribe nombre"
+          (keypress)="soloLetras($event)"
+        />
+      </mat-form-field>
+      @if (errors.first_name) {
+        <div class="invalid-feedback">{{ errors.first_name }}</div>
+      }
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input
+          matInput
+          [(ngModel)]="maestro.last_name"
+          placeholder="Escribe apellidos"
+          (keypress)="soloLetras($event)"
+        />
+      </mat-form-field>
+      @if (errors.last_name) {
+        <div class="invalid-feedback">{{ errors.last_name }}</div>
+      }
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Correo electrónico</mat-label>
+        <input
+          matInput
+          [(ngModel)]="maestro.email"
+          placeholder="Escribe correo electrónico"
+          [disabled]="editar"
+        />
+      </mat-form-field>
+      @if (errors.email) {
+        <div class="invalid-feedback">{{ errors.email }}</div>
+      }
+
+      <!-- Fecha de nacimiento con datepicker de Angular Material -->
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerNacimiento"
+          [(ngModel)]="maestro.fecha_nacimiento"
+          name="fecha_nacimiento"
+          [min]="fechaMinima"
+          [max]="fechaMaxima"
+          (click)="pickerNacimiento.open()"
+          readonly
+          placeholder="Selecciona la fecha"
+        />
+        <mat-datepicker-toggle matIconSuffix [for]="pickerNacimiento"></mat-datepicker-toggle>
+        <mat-datepicker #pickerNacimiento [startAt]="fechaInicio"></mat-datepicker>
+      </mat-form-field>
+      @if (errors.fecha_nacimiento) {
+        <div class="invalid-feedback">{{ errors.fecha_nacimiento }}</div>
+      }
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          [(ngModel)]="maestro.telefono"
+          mask="(000) 000-0000"
+          placeholder="Escribe teléfono"
+        />
+      </mat-form-field>
+      @if (errors.telefono) {
+        <div class="invalid-feedback">{{ errors.telefono }}</div>
+      }
+
+      <mat-form-field class="mat-input mat-hint-margin" appearance="outline">
+        <mat-label>RFC</mat-label>
+        <input
+          matInput
+          minlength="12"
+          maxlength="13"
+          [ngModel]="maestro.rfc"
+          (ngModelChange)="maestro.rfc = ($event || '').toUpperCase()"
+          placeholder="Escribe RFC"
+        />
+        <mat-hint align="end">{{ maestro.rfc?.length || 0 }}/13</mat-hint>
+      </mat-form-field>
+      @if (errors.rfc) {
+        <div class="invalid-feedback">{{ errors.rfc }}</div>
+      }
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Cubículo</mat-label>
+        <input matInput [(ngModel)]="maestro.cubiculo" placeholder="Escribe el cubículo" />
+      </mat-form-field>
+      @if (errors.cubiculo) {
+        <div class="invalid-feedback">{{ errors.cubiculo }}</div>
+      }
+
+      <mat-form-field class="mat-input" appearance="outline">
+        <mat-label>Área de investigación</mat-label>
+        <mat-select [(ngModel)]="maestro.area_investigacion" name="area_investigacion">
+          @for (area of areas; track area.id) {
+            <mat-option [value]="area.id">{{ area.nombre }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      @if (errors.area_investigacion) {
+        <div class="invalid-feedback">{{ errors.area_investigacion }}</div>
+      }
+
+
+      <div class="section-buttons">
+        <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
+
+        @if (!editar) {
+          <button class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
+        }
+
+        @if (editar) {
+          <button class="btn btn-primary" type="submit" (click)="actualizar()">Actualizar</button>
+        }
+      </div>
+    </div>
+  </div>
+</div>
